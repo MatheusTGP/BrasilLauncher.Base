@@ -1,0 +1,118 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BrasilLauncher.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="BrasilLauncher.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="BrasilLauncher">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="220,*"
+          Background="#090B10">
+
+        <Border Grid.Column="0"
+                Background="#0D1117"
+                BorderBrush="#1A1F29"
+                BorderThickness="0,0,1,0">
+
+            <Grid RowDefinitions="Auto, *, Auto">
+                <StackPanel Grid.Row="0" Margin="12">
+                    <TextBlock Text="BRASIL"
+                               FontSize="19"
+                               HorizontalAlignment="Center"
+                               FontWeight="Medium"
+                               Foreground="White"/>
+
+                    <TextBlock Text="LAUNCHER"
+                               FontSize="19"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               Foreground="LimeGreen"/>
+                </StackPanel>
+                
+                <!-- Navegação -->
+                <StackPanel Grid.Row="1"
+                            Margin="8"
+                            VerticalAlignment="Center">
+                    <Button Classes="SidebarButton"
+                            Content="🏠 Inicio"/>
+
+                    <Button Classes="SidebarButton"
+                            Content="🗺️ Mapas"/>
+                     
+                    <Button Classes="SidebarButton"
+                            Content="🙋‍♂️ Perfil"/>
+
+                    <Button Classes="SidebarButton"
+                            Content="⚙️ Configurações"/>
+
+                </StackPanel>
+
+                <TextBlock Grid.Row="2"
+                           Text="{Binding Profile.Username}"
+                           FontSize="17"
+                           Margin="12"
+                           Foreground="White"/>
+
+            </Grid>
+            
+        </Border>
+
+        <!-- Conteudo principal -->
+        <Grid Grid.Column="1"
+              RowDefinitions="*,Auto">
+            <StackPanel Grid.Row="0"
+                        Margin="32"
+                        Spacing="24">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Microsoft Login"
+                               FontSize="32"
+                               FontWeight="Bold"
+                               Foreground="PaleGreen"/>
+                     <TextBlock Text="Acesse sua conta original da Microsoft para entrar em servidores"
+                               FontSize="15"
+                               Foreground="LightGray"/>
+                    <Button Content="Entrar com Microsoft"
+                            Classes="PlayButton"
+                            Command="{Binding LoginMicrosoftCommand}"/>
+                </StackPanel>    
+            </StackPanel>
+
+            <Border Grid.Row="1"
+                    Background="#11151D"
+                    BorderBrush="#1E2430">
+
+                <Grid ColumnDefinitions="*,*,Auto"
+                      VerticalAlignment="Center"
+                      Margin="20">
+                    <ComboBox Grid.Column="0"
+                              ItemsSource="{Binding Versions}"
+                              SelectedItem="{Binding SelectedVersion}"
+                              BorderThickness="0"/>
+                    <Button Grid.Column="1"
+                            Content="Jogar"
+                            Classes="PlayButton"
+                            HorizontalContentAlignment="Center"
+                            Width="120"
+                            Command="{Binding LaunchGameCommand}"/>
+                    <CheckBox Grid.Column="2"
+                              IsChecked="{Binding PlayOffline}"
+                              Command="{Binding TogglePlayOfflineCommand}">Modo offline</CheckBox>
+
+                </Grid>
+                
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

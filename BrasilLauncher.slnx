@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/BrasilLauncher.Avalonia/">
+    <Project Path="BrasilLauncher.Avalonia/BrasilLauncher.csproj" />
+  </Folder>
+  <Folder Name="/BrasilLauncher.Terminal/">
+    <Project Path="BrasilLauncher.Terminal/BrasilLauncher.csproj" />
+  </Folder>
+</Solution>
