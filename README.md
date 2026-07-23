@@ -32,4 +32,4 @@ This project is under active development. Features and APIs may change until the
 
 This repository is part of an ongoing YouTube series documenting the development of BrasilLauncher.
 
-📺 Watch the series: [Click here](https://youtube.com/playlist?list=PLAzYhnljz93lFDDqXXGmO7SuOEEwJThXy&si=ttHuWIp
+📺 Watch the series: [Click here](https://youtube.com/playlist?list=PLAzYhnljz93lFDDqXXGmO7SuOEEwJThXy&si=ttHuWIp)
