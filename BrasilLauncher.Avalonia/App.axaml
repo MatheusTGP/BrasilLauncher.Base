@@ -2,38 +2,167 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="BrasilLauncher.App"
              xmlns:local="using:BrasilLauncher"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             xmlns:vm="using:BrasilLauncher.ViewModels"
+             xmlns:views="using:BrasilLauncher.Views"
+             RequestedThemeVariant="Dark">
+
+    <Application.Resources>
+        <!-- CORES GERAIS -->
+        <Color x:Key="BackgroundColor">#080B12</Color>
+        <Color x:Key="SidebarColor">#0C111A</Color>
+        <Color x:Key="CardColor">#121A26</Color>
+
+        <Color x:Key="BorderColor">#202B3A</Color>
+
+        <Color x:Key="PrimaryColor">#52D273</Color>
+        <Color x:Key="AccentColor">#6DFF4A</Color>
+
+        <Color x:Key="TextColor">#FFFFFF</Color>
+        <Color x:Key="SecondaryTextColor">#8993A5</Color>
+
+        <SolidColorBrush x:Key="BackgroundBrush"
+                         Color="{StaticResource BackgroundColor}"/>
+
+        <SolidColorBrush x:Key="SidebarBrush"
+                         Color="{StaticResource SidebarColor}"/>
+
+        <SolidColorBrush x:Key="CardBrush"
+                         Color="{StaticResource CardColor}"/>
+
+        <SolidColorBrush x:Key="BorderBrush"
+                         Color="{StaticResource BorderColor}"/>
+
+        <SolidColorBrush x:Key="PrimaryBrush"
+                         Color="{StaticResource PrimaryColor}"/>
+
+        <SolidColorBrush x:Key="TextBrush"
+                         Color="{StaticResource TextColor}"/>
+
+        <SolidColorBrush x:Key="SecondaryTextBrush"
+                         Color="{StaticResource SecondaryTextColor}"/>
+
+
+    </Application.Resources>
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-  
-    <Application.Styles>
-        <FluentTheme />
-        <Style Selector="Button.SidebarButton">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="LightGray"/>
-            <Setter Property="Padding" Value="14"/>
-            <Setter Property="CornerRadius" Value="14"/>
-        </Style>
 
-        <Style Selector="Button.PlayButton">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="Background" Value="#6DFF4A"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Padding" Value="14,10"/>
-            <Setter Property="CornerRadius" Value="5"/>
+        <local:ViewLocator/>
+
+        <DataTemplate DataType="vm:ProfileViewModel">
+            <views:ProfileView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:HomeViewModel">
+            <views:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="vm:MainWindowViewModel">
+            <views:MainWindow/>
+        </DataTemplate>
+
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme/>
+        <!-- BOTÕES DA SIDEBAR -->
+
+        <Style Selector="Button.SidebarButton">
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch"/>
+
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+
+            <Setter Property="Foreground"
+                    Value="{StaticResource SecondaryTextBrush}"/>
+
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+
+            <Setter Property="Padding"
+                    Value="14"/>
+
+
+            <Setter Property="CornerRadius"
+                    Value="12"/>
+
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
         </Style>
 
         <Style Selector="Button.SidebarButton:pointerover">
-            <Setter Property="Background" Value="#151A22"/>
-            <Setter Property="Foreground" Value="White"/>
+
+
+            <Setter Property="Background"
+                    Value="#182231"/>
+
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+
         </Style>
+
+        <Style Selector="Button.SidebarButton:pressed">
+            <Setter Property="Background"
+                    Value="#223044"/>
+        </Style>
+
+        <!-- BOTÃO JOGAR -->
+        <Style Selector="Button.PlayButton">
+            <Setter Property="Background"
+                    Value="{StaticResource AccentColor}"/>
+
+
+            <Setter Property="Foreground"
+                    Value="#071008"/>
+
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+
+
+            <Setter Property="FontSize"
+                    Value="17"/>
+
+
+            <Setter Property="Padding"
+                    Value="20,12"/>
+
+
+            <Setter Property="CornerRadius"
+                    Value="15"/>
+        </Style>
+
+        <Style Selector="Button.PlayButton:pointerover">
+            <Setter Property="Background"
+                    Value="#8AFF66"/>
+        </Style>
+
+        <!-- COMBOBOX -->
+        <Style Selector="ComboBox">
+            <Setter Property="Background"
+                    Value="#121A26"/>
+
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+
+            <Setter Property="CornerRadius"
+                    Value="10"/>
+        </Style>
+
     </Application.Styles>
 
 </Application>

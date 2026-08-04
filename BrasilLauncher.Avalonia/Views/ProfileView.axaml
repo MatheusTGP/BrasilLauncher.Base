@@ -1,0 +1,198 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BrasilLauncher.ViewModels"
+             x:Class="BrasilLauncher.Views.ProfileView"
+             x:DataType="vm:ProfileViewModel">
+
+    <ScrollViewer>
+        <StackPanel Margin="25"
+                    Spacing="25">
+
+            <!-- Título -->
+            <StackPanel Spacing="5">
+
+                <TextBlock Text="Seu Perfil"
+                           FontSize="34"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+
+                <TextBlock Text="Gerencie sua conta Minecraft e configurações"
+                           Foreground="#8A94A6"
+                           FontSize="15"/>
+
+            </StackPanel>
+
+            <!-- Perfil principal -->
+            <Border Background="#111722"
+                    CornerRadius="20"
+                    Padding="25">
+
+
+                <Grid ColumnDefinitions="Auto,*, Auto"
+                      RowDefinitions="Auto"
+                      ColumnSpacing="25">
+
+
+                    <!-- Skin -->
+                    <Border Width="80"
+                            Height="80"
+                            CornerRadius="12"
+                            Background="DarkSlateGray">
+
+                        <Image Source="{Binding SkinImage}"
+                               Stretch="Uniform"/>
+
+                    </Border>
+                    <StackPanel Grid.Column="1"
+                                VerticalAlignment="Center">
+
+                        <TextBox Text="{Binding Profile.Session.Username, UpdateSourceTrigger=PropertyChanged}"
+                                   FontSize="32"
+                                   PlaceholderText="Steve"
+                                   Padding="0"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   CornerRadius="0"
+                                   IsReadOnly="{Binding Profile.IsLogged}"
+                                   BorderBrush="Transparent"
+                                   Background="Transparent"/>
+
+
+                        <TextBlock Text="{Binding Profile.SessionType}"
+                                   Foreground="#8B95A7"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2"
+                                Orientation="Vertical"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"
+                                Spacing="10">
+
+                        <Button Content="Conectar-se"
+                                CornerRadius="12"
+                                Padding="12"
+                                Background="#6DFF4A"
+                                Foreground="Black"
+                                FontWeight="Bold"
+                                IsEnabled="{Binding !Profile.IsLogged}"
+                                Command="{Binding LoginCommand}"/>
+
+                         <Button Content="Desconectar"
+                                CornerRadius="12"
+                                Padding="12"
+                                Background="IndianRed"
+                                Foreground="Black"
+                                FontWeight="Bold"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Center"
+                                IsEnabled="{Binding Profile.IsLogged}"
+                                IsVisible="{Binding Profile.IsLogged}"
+                                Command="{Binding LogoutCommand}"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- Informações -->
+            <TextBlock Text="Informações da conta"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="15">
+
+                <Border Background="#111722"
+                        CornerRadius="15"
+                        Padding="20">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Usuário"
+                                   Foreground="#8993A5"/>
+                        <TextBlock Text="{Binding Profile.Session.Username}"
+                                   FontSize="20"
+                                   Foreground="White"/>
+
+                    </StackPanel>
+
+                </Border>
+                <Border Grid.Column="1"
+                        Background="#111722"
+                        CornerRadius="15"
+                        Padding="20">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Tipo"
+                                   Foreground="#8993A5"/>
+
+                        <TextBlock Text="{Binding Profile.SessionType}"
+                                   FontSize="20"
+                                   Foreground="White"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+            <!-- Minecraft -->
+            <TextBlock Text="Minecraft"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Foreground="White"/>
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="15">
+
+                <Border Background="#111722"
+                        CornerRadius="15"
+                        Padding="20">
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Versão favorita"
+                                   Foreground="#8993A5"/>
+
+                        <TextBlock Text="26.2"
+                                   FontSize="22"
+                                   Foreground="White"/>
+
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1"
+                        Background="#111722"
+                        CornerRadius="15"
+                        Padding="20">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Memória RAM (Não definido ainda)"
+                                   Foreground="#8993A5"/>
+
+                        <NumericUpDown Minimum="512"
+                                       Maximum="32768"
+                                       Increment="512"
+                                       FormatString="N0"
+                                       PlaceholderText="4096"
+                                       BorderThickness="0"
+                                       Background="Transparent"
+                                       Foreground="White"
+                                       HorizontalContentAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</UserControl>

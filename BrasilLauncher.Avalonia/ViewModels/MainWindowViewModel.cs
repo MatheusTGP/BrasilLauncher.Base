@@ -1,4 +1,8 @@
-﻿using CmlLib.Core;
+﻿using Avalonia.Media.Imaging;
+using BrasilLauncher.Navigation;
+using BrasilLauncher.Services;
+using BrasilLauncher.Utils;
+using CmlLib.Core;
 using CmlLib.Core.Auth;
 using CmlLib.Core.Auth.Microsoft;
 using CmlLib.Core.ProcessBuilder;
@@ -16,11 +20,10 @@ namespace BrasilLauncher.ViewModels {
 
         private readonly MinecraftLauncher Minecraft = new();
 
-        [ObservableProperty]
-        private MSession profile = MSession.CreateOfflineSession("Steve");
+        public INavigationService Navigation { get; }
 
-        // ID do cliente, usado para autenticação online no Azure
-        private string clientId = "INSERT_CLIENT_ID_HERE";
+        [ObservableProperty]
+        private ProfileService profile;
 
         public ObservableCollection<string> Versions { get; set; } = [];
 
@@ -30,8 +33,20 @@ namespace BrasilLauncher.ViewModels {
         [ObservableProperty]
         private bool playOffline;
 
-        public MainWindowViewModel() {
+        public MainWindowViewModel(INavigationService navigation, ProfileService profileService) {
+            Navigation = navigation;
+            Profile = profileService;
             _ = LoadVersions();
+        }
+
+        [RelayCommand]
+        public void NavigateToHome() {
+            Navigation.Navigate<HomeViewModel>();
+        }
+
+        [RelayCommand]
+        public void NavigateToProfile() {
+            Navigation.Navigate<ProfileViewModel>();
         }
 
         public async Task LoadVersions() {
@@ -39,7 +54,9 @@ namespace BrasilLauncher.ViewModels {
             Versions.Clear();
 
             foreach (var version in versions) {
-                Versions.Add(version.Name);
+                if (version.Type == "release") {
+                    Versions.Add(version.Name);
+                }
             }
 
             SelectedVersion = Versions.FirstOrDefault();
@@ -48,33 +65,14 @@ namespace BrasilLauncher.ViewModels {
         [RelayCommand]
         public async Task LaunchGame() {
             if (SelectedVersion == null) return;
-            var option = new MLaunchOption { Session = Profile };
+            var option = new MLaunchOption { Session = Profile.Session };
             var process = await Minecraft.InstallAndBuildProcessAsync(SelectedVersion, option);
             process.Start();
         }
 
         [RelayCommand]
-        public async Task LoginMicrosoft() {
-            var app = await MsalClientHelper.BuildApplicationWithCache(clientId);
-            var loginHandler = new JELoginHandlerBuilder()
-                .WithOAuthProvider(new MsalCodeFlowProvider(app))
-                .Build();
-
-            try {
-                Profile = await loginHandler.AuthenticateSilently(); 
-            } catch {
-                Profile = await loginHandler.AuthenticateInteractively();
-            }
-        }
-
-        [RelayCommand]
         public void TogglePlayOffline() {
-            if (PlayOffline) {
-                Profile = MSession.CreateOfflineSession("Steve");
-                PlayOffline = true;
-            } else {
-                PlayOffline = false;
-            }
+            // Pensar em outras formas de implementar o modo offline.
         }
 
     }

@@ -3,116 +3,219 @@
         xmlns:vm="using:BrasilLauncher.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
         x:Class="BrasilLauncher.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="BrasilLauncher">
+        Title="BrasilLauncher"
+        Width="1200"
+        Height="700"
+        Background="#080B11">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <Grid ColumnDefinitions="220,*"
-          Background="#090B10">
-
+    <Grid ColumnDefinitions="260,*">
+        <!-- SIDEBAR -->
         <Border Grid.Column="0"
-                Background="#0D1117"
-                BorderBrush="#1A1F29"
+                Background="#0B0F16"
+                BorderBrush="#1C2432"
                 BorderThickness="0,0,1,0">
 
-            <Grid RowDefinitions="Auto, *, Auto">
-                <StackPanel Grid.Row="0" Margin="12">
+            <Grid RowDefinitions="Auto,*,Auto"
+                  Margin="20">
+
+                <!-- LOGO -->
+                <StackPanel HorizontalAlignment="Center"
+                            Spacing="2">
+
                     <TextBlock Text="BRASIL"
-                               FontSize="19"
-                               HorizontalAlignment="Center"
-                               FontWeight="Medium"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               TextAlignment="Center"
                                Foreground="White"/>
 
                     <TextBlock Text="LAUNCHER"
-                               FontSize="19"
-                               HorizontalAlignment="Center"
-                               FontWeight="Bold"
-                               Foreground="LimeGreen"/>
+                               FontSize="26"
+                               FontWeight="Black"
+                               Foreground="#52D273"/>
+
+                    <TextBlock Text="Minecraft: Java Edition"
+                               Margin="0,5,0,0"
+                               FontSize="12"
+                               Foreground="#7F899A"
+                               HorizontalAlignment="Center"/>
+
+
                 </StackPanel>
-                
-                <!-- Navegação -->
+
+                <!-- MENU -->
                 <StackPanel Grid.Row="1"
-                            Margin="8"
-                            VerticalAlignment="Center">
-                    <Button Classes="SidebarButton"
-                            Content="🏠 Inicio"/>
+                            Margin="0,50,0,0"
+                            Spacing="12">
 
                     <Button Classes="SidebarButton"
-                            Content="🗺️ Mapas"/>
-                     
-                    <Button Classes="SidebarButton"
-                            Content="🙋‍♂️ Perfil"/>
+                            Command="{Binding NavigateToHomeCommand}">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="15">
+
+                            <TextBlock Text="🏠"
+                                       FontSize="18"/>
+
+                            <TextBlock Text="Launcher"
+                                       FontSize="18"/>
+
+                        </StackPanel>
+                    </Button>
 
                     <Button Classes="SidebarButton"
-                            Content="⚙️ Configurações"/>
+                            Command="{Binding NavigateToProfileCommand}">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="15">
+
+                            <TextBlock Text="👤"
+                                       FontSize="18"/>
+
+                            <TextBlock Text="Sua Conta"
+                                       FontSize="18"/>
+
+                        </StackPanel>
+                    </Button>
+
+                    <Button Classes="SidebarButton">
+                        <StackPanel Orientation="Horizontal"
+                                    Spacing="15">
+
+                            <TextBlock Text="⚙"
+                                       FontSize="18"/>
+
+                            <TextBlock Text="Configurações"/>
+
+
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
 
-                <TextBlock Grid.Row="2"
-                           Text="{Binding Profile.Username}"
-                           FontSize="17"
-                           Margin="12"
-                           Foreground="White"/>
+                <!-- PERFIL -->
+                <Border Grid.Row="2"
+                        Background="#121824"
+                        CornerRadius="15"
+                        Padding="15">
+
+                    <Grid ColumnDefinitions="Auto,*"
+                          ColumnSpacing="15">
+
+                        <Border Width="45"
+                                Height="45"
+                                CornerRadius="25"
+                                Background="#52D273">
+
+                            <TextBlock Text="S"
+                                       FontWeight="Bold"
+                                       FontSize="22"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Spacing="4">
+
+                            <TextBlock Text="{Binding Profile.Session.Username}"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock Text="{Binding Profile.SessionType}"
+                                       Foreground="{StaticResource ResourceKey=SecondaryTextColor}"
+                                       FontSize="12"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Border>
 
             </Grid>
-            
+
         </Border>
 
-        <!-- Conteudo principal -->
+        <!-- CONTEÚDO -->
         <Grid Grid.Column="1"
-              RowDefinitions="*,Auto">
-            <StackPanel Grid.Row="0"
-                        Margin="32"
-                        Spacing="24">
-                <StackPanel Spacing="10">
-                    <TextBlock Text="Microsoft Login"
-                               FontSize="32"
-                               FontWeight="Bold"
-                               Foreground="PaleGreen"/>
-                     <TextBlock Text="Acesse sua conta original da Microsoft para entrar em servidores"
-                               FontSize="15"
-                               Foreground="LightGray"/>
-                    <Button Content="Entrar com Microsoft"
-                            Classes="PlayButton"
-                            Command="{Binding LoginMicrosoftCommand}"/>
-                </StackPanel>    
-            </StackPanel>
+              RowDefinitions="*,Auto"
+              Background="#080B11">
 
-            <Border Grid.Row="1"
-                    Background="#11151D"
-                    BorderBrush="#1E2430">
-
-                <Grid ColumnDefinitions="*,*,Auto"
-                      VerticalAlignment="Center"
-                      Margin="20">
-                    <ComboBox Grid.Column="0"
-                              ItemsSource="{Binding Versions}"
-                              SelectedItem="{Binding SelectedVersion}"
-                              BorderThickness="0"/>
-                    <Button Grid.Column="1"
-                            Content="Jogar"
-                            Classes="PlayButton"
-                            HorizontalContentAlignment="Center"
-                            Width="120"
-                            Command="{Binding LaunchGameCommand}"/>
-                    <CheckBox Grid.Column="2"
-                              IsChecked="{Binding PlayOffline}"
-                              Command="{Binding TogglePlayOfflineCommand}">Modo offline</CheckBox>
-
-                </Grid>
-                
+            <!-- VIEW -->
+            <Border Padding="12">
+                <ContentControl Content="{Binding Navigation.CurrentView}"/>
             </Border>
 
+            <!-- BARRA INFERIOR -->
+            <Border Grid.Row="1"
+                    Background="#0B0F16"
+                    BorderBrush="#1C2432"
+                    BorderThickness="0,1,0,0"
+                    Padding="20">
+
+                <Grid ColumnDefinitions="*,Auto,Auto"
+                      ColumnSpacing="20">
+
+                    <!-- VERSÃO -->
+                    <Border Background="#141B27"
+                            CornerRadius="15"
+                            Padding="15"
+                            VerticalAlignment="Center">
+                        <Grid ColumnDefinitions="Auto,*">
+
+                            <TextBlock Text="⛏"
+                                       FontSize="22"/>
+
+                            <ComboBox Grid.Column="1"
+                                      HorizontalAlignment="Stretch"
+                                      ItemsSource="{Binding Versions}"
+                                      SelectedItem="{Binding SelectedVersion}"
+                                      BorderThickness="0"
+                                      PlaceholderText="Selecione uma versão"
+                                      PlaceholderForeground="{StaticResource SecondaryTextColor}"
+                                      Background="Transparent"/>
+                        </Grid>
+
+                    </Border>
+
+                    <!-- OFFLINE -->
+                    <Border Grid.Column="1"
+                            Background="#141B27"
+                            Padding="15"
+                            CornerRadius="15">
+
+                        <CheckBox IsChecked="{Binding PlayOffline}">
+                            <TextBlock Text="Modo offline"
+                                       TextAlignment="Center"
+                                       Foreground="White"/>
+                        </CheckBox>
+
+                    </Border>
+
+                    <!-- JOGAR -->
+                    <Button Grid.Column="2"
+                            Classes="PlayButton"
+                            Width="170"
+                            Height="60"
+                            Command="{Binding LaunchGameCommand}">
+
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Spacing="12">
+                            <TextBlock Text="▶"
+                                       FontSize="20"/>
+
+                            <TextBlock
+                                       Text="Jogar"
+                                       FontSize="19"
+                                       FontWeight="Bold"/>
+
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
         </Grid>
-
     </Grid>
-
 </Window>

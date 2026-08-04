@@ -5,5 +5,11 @@ namespace BrasilLauncher.Views {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void WebView_NavigationCompleted(object? sender, WebViewNavigationCompletedEventArgs args) {
+            if (args.IsSuccess) {
+                // Navigation completed successfully
+            }
+        }
     }
 }

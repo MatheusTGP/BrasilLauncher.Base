@@ -1,0 +1,167 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BrasilLauncher.ViewModels"
+             x:Class="BrasilLauncher.Views.HomeView"
+             x:DataType="vm:HomeViewModel">
+
+    <ScrollViewer>
+
+        <StackPanel Margin="10"
+                    Spacing="25">
+
+            <!-- Banner principal -->
+            <Border Background="{StaticResource CardBrush}"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="18"
+                    Padding="30"
+                    Height="180">
+
+                <Grid ColumnDefinitions="*,Auto">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="BrasilLauncher"
+                                   FontSize="32"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextBrush}"/>
+
+                        <TextBlock Text="Seu launcher brasileiro para Minecraft Java"
+                                   FontSize="16"
+                                   Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                        <Border Background="{StaticResource PrimaryBrush}"
+                                CornerRadius="8"
+                                Padding="12,6"
+                                HorizontalAlignment="Left"
+                                Margin="0,15,0,0">
+
+                            <TextBlock Text="● Atualizado"
+                                       Foreground="#071008"
+                                       FontWeight="Bold"/>
+
+                        </Border>
+
+                    </StackPanel>
+
+                    <!-- Logo -->
+                    <Border Grid.Column="1"
+                            Width="120"
+                            Height="120"
+                            CornerRadius="20"
+                            Background="{StaticResource PrimaryBrush}"
+                            VerticalAlignment="Center">
+
+                        <TextBlock Text="MC"
+                                   FontSize="45"
+                                   FontWeight="Black"
+                                   Foreground="#071008"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                    </Border>
+
+                </Grid>
+
+            </Border>
+
+            <!-- Cards -->
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="15">
+
+                <Border Background="{StaticResource CardBrush}"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Padding="20">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Ultimo Lançamento"
+                                   FontSize="15"
+                                   Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                        <TextBlock Text="26.2"
+                                   FontSize="25"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextBrush}"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <Border Grid.Column="1"
+                        Background="{StaticResource CardBrush}"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Padding="20">
+
+                    <StackPanel Spacing="8">
+
+                        <TextBlock Text="Versão"
+                                   FontSize="15"
+                                   Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                        <TextBlock Text="v1.1-Avalonia"
+                                   FontSize="25"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextBrush}"/>
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+            <!-- Changelog -->
+            <TextBlock Text="Últimas novidades"
+                       FontSize="26"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource TextBrush}"/>
+
+            <Border Background="{StaticResource CardBrush}"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="15"
+                    Padding="20">
+
+                <StackPanel Spacing="15">
+
+                    <TextBlock Text="🚀 BrasilLauncher v1.1-Avalonia"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource AccentBrush}"/>
+
+                    <TextBlock Text="• Novas telas de navegação&#10;• Suporte a todas as versões do Minecraft&#10;• Adicionado ClientId do Azure do código do Cmllib.Core"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               FontSize="15"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <Border Background="{StaticResource CardBrush}"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="15"
+                    Padding="20">
+
+                <StackPanel Spacing="10">
+
+                    <TextBlock Text="🛠 Próximas atualizações"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextBrush}"/>
+
+                    <TextBlock Text="• Adicionar suporte à Fabric e Forge&#10;• Gerenciamento de mods&#10;• Mais personalização&#10;• Instancias de jogo"
+                               Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</UserControl>
