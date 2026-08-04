@@ -1,35 +1,38 @@
 # BrasilLauncher
+O **BrasilLauncher** é um ecossistema de launchers de Minecraft de código aberto desenvolvido em torno da biblioteca **Cmllib.Core**.
 
-`Cmllib.Core` is the core library behind the BrasilLauncher ecosystem.
+A **Cmllib.Core** é a biblioteca principal responsável pela instalação do Minecraft, autenticação, gerenciamento de versões e inicialização do jogo. Ela foi projetada para ser totalmente usada para que a mesma base de código seja utilizada por aplicações desktop, terminal ou qualquer outro tipo de frontend.
 
-Its purpose is to provide a reusable foundation for building Minecraft launchers without depending on a specific user interface. Desktop, Android, terminal, or any other frontend can share the same installation and launch logic.
+## ✨ Recursos
+* Instalação de qualquer versão do Minecraft
+* Download de bibliotecas e assets
+* Gerenciamento do manifesto de versões
+* Suporte à autenticação Microsoft e modo Offline
+* Arquitetura multiplataforma
 
-## Features
+## 🏗️ Construído Sobre
+O BrasilLauncher é desenvolvido sobre a **CmlLib.Core**, expandindo suas funcionalidades com novas abstrações, utilitários e melhorias criadas especificamente para o ecossistema BrasilLauncher.
 
-* Minecraft version installation
-* Version manifest management
-* Library downloading
-* Asset downloading
-* Java runtime management
-* Authentication support
-* Cross-platform architecture
+## 📦 Downloads
 
-## Built With
+### Versão Terminal
+Baixe a versão para terminal:
 
-BrasilLauncher is built on top of **CmlLib.Core**, extending its capabilities with additional abstractions and utilities designed for the BrasilLauncher ecosystem.
+* https://github.com/MatheusTGP/BrasilLauncher.Base/releases/tag/v1.0-terminal
 
-## Download BrasilLauncher for Terminal and Avalonia (with GUI)
+### Versão Avalonia (Interface Gráfica)
+Baixe a versão desktop com interface gráfica desenvolvida em Avalonia UI:
 
-* [BrasilLauncher Terminal Download](https://github.com/MatheusTGP/BrasilLauncher.Base/releases/tag/v.1.0-terminal)
+* https://github.com/MatheusTGP/BrasilLauncher.Base/releases/tag/v1.1.0-avalonia
 
-* [BrasilLauncher Avalonia Download](https://github.com/MatheusTGP/BrasilLauncher.Base/releases/tag/v1.0-avalonia)
+## 🚧 Status do Projeto
+O BrasilLauncher está em desenvolvimento ativo.
 
-## Status
+Novos recursos, melhorias na arquitetura e alterações na API são adicionados continuamente. Você pode desenvolver seu próprio launcher de minecraft a partir dessa base
 
-This project is under active development. Features and APIs may change until they become stable.
+## 🎥 Série no YouTube
 
-## YouTube Series
+Este projeto está sendo desenvolvido publicamente em uma série no YouTube, onde cada etapa da implementação e das decisões de arquitetura é apresentada em detalhes.
 
-This repository is part of an ongoing YouTube series documenting the development of BrasilLauncher.
-
-📺 Watch the series: [Click here](https://youtube.com/playlist?list=PLAzYhnljz93lFDDqXXGmO7SuOEEwJThXy&si=ttHuWIp)
+📺 Playlist:
+https://youtube.com/playlist?list=PLAzYhnljz93lFDDqXXGmO7SuOEEwJThXy
