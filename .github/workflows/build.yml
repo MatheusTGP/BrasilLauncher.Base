@@ -26,4 +26,8 @@ jobs:
         run: dotnet restore BrasilLauncher.slnx
 
       - name: Build
-        run: dotnet build BrasilLauncher.slnx -c Release --no-restore
+        run: |
+          dotnet build BrasilLauncher.slnx \
+          -c Release \
+          --no-restore \
+          -p:EnableWindowsTargeting=true
